@@ -15,22 +15,13 @@ import static play.test.Helpers.contentType;
 public class ApplicationTest {
 
   /**
-   * Tests that 1+1 equals 2.
-   */
-  @Test
-  public void simpleCheck() {
-    int a = 1 + 1;
-    assertThat(a).isEqualTo(2);
-  }
-
-  /**
    * Tests that the Index template renders correctly.
    */
   @Test
   public void renderTemplate() {
     Content html = views.html.Index.render("Welcome to the home page.");
     assertThat(contentType(html)).isEqualTo("text/html");
-    assertThat(contentAsString(html)).contains("home page");
+    assertThat(contentAsString(html)).contains("Current");
   }
 
 
