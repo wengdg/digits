@@ -45,4 +45,13 @@ public class ContactDB {
   public static List<Contact> getContacts() {
     return new ArrayList<>(contactList.values());
   }
+
+  /**
+   * Delete contact with id.
+   * @param id Contact with id to delete.
+   */
+  public static void deleteContact(long id) {
+    contactList.remove(id);
+  }
+
 }
