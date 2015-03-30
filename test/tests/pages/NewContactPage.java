@@ -2,6 +2,7 @@ package tests.pages;
 
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
+import static org.fluentlenium.core.filter.FilterConstructor.withId;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -37,11 +38,13 @@ public class NewContactPage extends FluentPage {
    * @param firstName First name.
    * @param lastName Last name.
    * @param tel Telephone.
+   * @param telType Telephone type.
    */
-  public void createContact(String firstName, String lastName, String tel) {
+  public void createContact(String firstName, String lastName, String tel, String telType) {
     fill("#firstName").with(firstName);
     fill("#lastName").with(lastName);
     fill("#tel").with(tel);
+    find("select", withId("telType")).find("option", withId(telType)).click();
     submit("#submit");
   }
   
