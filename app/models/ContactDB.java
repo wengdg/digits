@@ -21,7 +21,7 @@ public class ContactDB {
    */
   public static void createContact(ContactFormData formData) {
     long idNum = (formData.id == 0) ? currentId++ : formData.id;
-    Contact contact = new Contact(formData.firstName, formData.lastName, formData.tel, idNum);
+    Contact contact = new Contact(formData.firstName, formData.lastName, formData.tel, idNum, formData.telType);
     contactList.put(idNum, contact);
   }
 

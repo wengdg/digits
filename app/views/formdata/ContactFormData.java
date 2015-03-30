@@ -22,6 +22,9 @@ public class ContactFormData {
   /** Stores id. **/
   public long id;
 
+  /** Stores telephone type **/
+  public String telType;
+
   /**
    * Default no-arg constructor.
    */
@@ -37,6 +40,7 @@ public class ContactFormData {
     this.lastName = contact.getLastName();
     this.tel = contact.getTel();
     this.id = contact.getId();
+    this.telType = contact.getTelType();
   }
 
   /**
@@ -58,6 +62,9 @@ public class ContactFormData {
     }
     if (tel.length() != 12) {
       errors.add(new ValidationError("tel", "Telephone must be in format xxx-xxx-xxxx."));
+    }
+    if (!TelephoneTypes.isType(telType)) {
+      errors.add(new ValidationError("telType", "Telephone type is invalid."));
     }
 
     return errors.isEmpty() ? null : errors;
