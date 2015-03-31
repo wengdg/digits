@@ -45,13 +45,13 @@ public class Application extends Controller {
     Form<ContactFormData> formData = Form.form(ContactFormData.class).bindFromRequest();
 
     if (formData.hasErrors()) {
-      System.out.println("Error occured!");
+      System.out.println("Error occurred!");
       return badRequest(NewContact.render(formData, TelephoneTypes.getTypes()));
     }
     else {
       ContactFormData data = formData.get();
       ContactDB.createContact(data);
-      System.out.format("Recieved %s %s %s \n", data.firstName, data.lastName, data.tel);
+      System.out.format("Recieved %s %s %s %s\n", data.firstName, data.lastName, data.tel, data.telType);
       return ok(NewContact.render(formData, TelephoneTypes.getTypes(data.telType)));
     }
   }
