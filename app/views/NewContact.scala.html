@@ -1,4 +1,4 @@
-@(contactForm: Form[views.formdata.ContactFormData], telephoneTypeMap: Map[String, Boolean], dietMap: Map[String, Boolean])
+@(contactForm: Form[views.formdata.ContactFormData], telephoneTypeMap: Map[String, Boolean])
 
 @import helper._
 
@@ -31,11 +31,6 @@
       label = "Telephone type",
       optionMap = telephoneTypeMap,
       isMultiple = false,
-      help = "")
-
-    @checkboxes(contactForm("dietTypes"),
-      label = "Diet",
-      checkboxMap = dietMap,
       help = "")
 
     <div class="form-group">
