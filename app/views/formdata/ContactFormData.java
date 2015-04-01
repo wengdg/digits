@@ -44,20 +44,6 @@ public class ContactFormData {
   }
 
   /**
-   * Initialize application with sample data.
-   * @param firstName First name.
-   * @param lastName Last name.
-   * @param tel Telephone number.
-   * @param telType Telephone type.
-   */
-  public ContactFormData(String firstName, String lastName, String tel, String telType) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.tel = tel;
-    this.telType = telType;
-  }
-
-  /**
    * Validates that form does not accept incorrect input.
    * @return Null if no errors, otherwise return errors.
    */
