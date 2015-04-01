@@ -22,7 +22,7 @@ public class ContactFormData {
   /** Stores id. **/
   public long id;
 
-  /** Stores telephone type **/
+  /** Stores telephone type. **/
   public String telType;
 
   /**
