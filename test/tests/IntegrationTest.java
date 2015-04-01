@@ -37,6 +37,7 @@ public class IntegrationTest {
   /**
    * Check to see that we can display a new contact.
    */
+  @Test
   public void testCreateNewPage() {
     running(testServer(port, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
