@@ -1,0 +1,8 @@
+@(field: Field)
+
+<div class="form-group @if(field.hasErrors) {has-error}">
+<input type="hidden"
+name="@field.name"
+id="@field.id"
+value="@field.value">
+</div>
