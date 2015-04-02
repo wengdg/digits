@@ -6,7 +6,7 @@ import views.formdata.ContactFormData;
 /**
  * Created by Weng on 3/31/2015.
  */
-public class Global extends GlobalSettings{
+public class Global extends GlobalSettings {
 
   @Override
   public void onStart(Application application) {
