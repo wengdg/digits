@@ -29,7 +29,7 @@ public class Contact {
   }
 
   /**
-   * Returns first name.
+   * Return first name.
    * @return The first name.
    */
   public String getFirstName() {
