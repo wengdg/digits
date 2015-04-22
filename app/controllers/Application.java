@@ -1,14 +1,16 @@
 package controllers;
 
+import models.ContactDB;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.data.Form;
 import views.formdata.ContactFormData;
+import views.formdata.DietTypes;
+import views.formdata.TelephoneTypes;
 import views.html.Index;
 import views.html.NewContact;
-import models.ContactDB;
+
 import java.util.Map;
-import views.formdata.TelephoneTypes;
 
 
 /**
@@ -33,7 +35,8 @@ public class Application extends Controller {
     ContactFormData data = (id == 0) ? new ContactFormData() : new ContactFormData(ContactDB.getContact(id));
     Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(data);
     Map<String, Boolean> telTypeMap = TelephoneTypes.getTypes(data.telType);
-    return ok(NewContact.render(formData, telTypeMap));
+    Map<String, Boolean> dietTypeMap = DietTypes.getTypes(data.dietTypes);
+    return ok(NewContact.render(formData, telTypeMap, dietTypeMap));
 
   }
 
@@ -46,13 +49,13 @@ public class Application extends Controller {
 
     if (formData.hasErrors()) {
       System.out.println("Error occurred!");
-      return badRequest(NewContact.render(formData, TelephoneTypes.getTypes()));
+      return badRequest(NewContact.render(formData, TelephoneTypes.getTypes(), DietTypes.getTypes()));
     }
     else {
       ContactFormData data = formData.get();
       ContactDB.createContact(data);
       System.out.format("Recieved %s %s %s %s\n", data.firstName, data.lastName, data.tel, data.telType);
-      return ok(NewContact.render(formData, TelephoneTypes.getTypes(data.telType)));
+      return ok(NewContact.render(formData, TelephoneTypes.getTypes(data.telType),  DietTypes.getTypes(data.dietTypes)));
     }
   }
 

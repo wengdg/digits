@@ -1,9 +1,10 @@
 package views.formdata;
 
+import models.Contact;
 import play.data.validation.ValidationError;
+
 import java.util.ArrayList;
 import java.util.List;
-import models.Contact;
 
 /**
  * Backing class for form data.
@@ -25,6 +26,9 @@ public class ContactFormData {
   /** Stores telephone type. **/
   public String telType;
 
+  /** Stores diet types **/
+  public List<String> dietTypes = new ArrayList<String>();
+
   /**
    * Default no-arg constructor.
    */
@@ -40,7 +44,8 @@ public class ContactFormData {
     this.lastName = contact.getLastName();
     this.tel = contact.getTel();
     this.id = contact.getId();
-    this.telType = contact.getTelType();
+    this.telType = contact.getTelType().getTelephoneType();
+    this.dietTypes = contact.getDietTypesList();
   }
 
   /**
@@ -50,11 +55,12 @@ public class ContactFormData {
    * @param tel Telephone number.
    * @param telType Telephone type.
    */
-  public ContactFormData(String firstName, String lastName, String tel, String telType) {
+  public ContactFormData(String firstName, String lastName, String tel, String telType, List<String> dietTypes) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.tel = tel;
     this.telType = telType;
+    this.dietTypes = dietTypes;
   }
 
   /**
@@ -79,6 +85,10 @@ public class ContactFormData {
     }
     if (!TelephoneTypes.isType(telType)) {
       errors.add(new ValidationError("telType", "Telephone type is invalid."));
+    }
+
+    if (dietTypes.size() > 5) {
+      errors.add(new ValidationError("dietTypes", "Too many diet types."));
     }
 
     return errors.isEmpty() ? null : errors;

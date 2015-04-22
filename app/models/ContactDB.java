@@ -31,7 +31,7 @@ public class ContactDB {
       dietTypes.add(getDietType(dietString));
     }
 
-    Contact contact = new Contact(formData.firstName, formData.lastName, formData.tel, idNum, formData.telType);
+    Contact contact = new Contact(formData.firstName, formData.lastName, formData.tel, idNum, telephoneType, dietTypes);
     contactList.put(idNum, contact);
   }
 

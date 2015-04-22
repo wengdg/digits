@@ -5,6 +5,9 @@ import play.Application;
 import play.GlobalSettings;
 import views.formdata.ContactFormData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Weng on 3/31/2015.
  */
@@ -13,10 +16,8 @@ public class Global extends GlobalSettings {
   @Override
   public void onStart(Application application) {
     super.onStart(application);
-    ContactDB.createContact(new ContactFormData("Danny", "Weng", "808-429-7517", "Mobile"));
-    ContactDB.createContact(new ContactFormData("Hanson", "Weng", "808-429-7517", "Mobile"));
-    ContactDB.createContact(new ContactFormData("Shao Fei", "Weng", "808-429-7517", "Mobile"));
-    ContactDB.createContact(new ContactFormData("Hui Lun", "Weng", "808-429-7517", "Mobile"));
+
+    List<String> diets = new ArrayList<>();
 
     ContactDB.addTelephoneType(new TelephoneType("Mobile"));
     ContactDB.addTelephoneType(new TelephoneType("Home"));
@@ -26,6 +27,11 @@ public class Global extends GlobalSettings {
     ContactDB.addDietType(new DietType("Beef"));
     ContactDB.addDietType(new DietType("Dairy"));
     ContactDB.addDietType(new DietType("Gluten"));
+
+    ContactDB.createContact(new ContactFormData("Danny", "Weng", "808-429-7517", "Mobile", diets));
+    ContactDB.createContact(new ContactFormData("Hanson", "Weng", "808-429-7517", "Mobile", diets));
+    ContactDB.createContact(new ContactFormData("Shao Fei", "Weng", "808-429-7517", "Mobile", diets));
+    ContactDB.createContact(new ContactFormData("Hui Lun", "Weng", "808-429-7517", "Mobile", diets));
   }
 
 }
