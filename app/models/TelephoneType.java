@@ -1,15 +1,22 @@
 package models;
 
+import play.db.ebean.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Weng on 4/20/2015.
  */
-public class TelephoneType {
-
+@Entity
+public class TelephoneType extends Model {
+  @Id
   private long id;
   private String telephoneType;
+  @OneToMany(mappedBy = "telType")
   private List<Contact> contacts = new ArrayList<>();
 
   /**
@@ -74,6 +81,14 @@ public class TelephoneType {
    */
   public void addContact(Contact contact) {
     this.contacts.add(contact);
+  }
+
+  /**
+   * The EBean ORM finder method for database queries
+   * @return The Finder method.
+   */
+  public static Finder<Long, TelephoneType> find() {
+    return new Finder<Long, TelephoneType>(Long.class, TelephoneType.class);
   }
 
 }
